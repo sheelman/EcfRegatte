@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<work>
+	<about>
+		<version num="0.4.0.1"/>
+		<author>
+			<name>MESSOUCI</name>
+			<email>jmerise@jfreesoft.com</email>
+		</author>
+	</about>
+<MCD>
+	<entitiesList>
+		<entite name="challenge" x="25" y="602">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="mois_debut" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="mois_fin" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="classe" x="1457" y="2">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="coefficient" type="Float" size1="12" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="club" x="750" y="0">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="code" x="1502" y="449">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="comite" x="543" y="380">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="commissaire" x="255" y="461">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="concurent" x="574" y="232">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="course" x="988" y="470">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="numero_inscription_valide" type="Mediumint" size1="7" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="nombre_point" type="TinyINT" size1="3" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="temps_reel" type="Time" size1="8" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="position" type="Smallint" size1="5" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="enregistrer" x="209" y="530">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="equipage" x="927" y="232">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="jury" x="55" y="482">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="membres" x="203" y="0">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="pseudo" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="pwd" type="Char" size1="8" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="personne" x="2" y="162">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="prenom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="adresse" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="code_postal" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="ville" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="telephone" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="email" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="date_naissance" type="Date" size1="10" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="affilie_FFV" type="INDEFINI" size1="0" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="numero_licence" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="date_licence" type="Date" size1="10" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="personnel" x="21" y="5">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="status" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="pointe" x="631" y="471">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="proprietaire" x="539" y="91">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="regatte" x="768" y="611">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="lieu" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="numero_course" type="TinyINT" size1="3" size2="0" key="" isnull="false" comment=""/>
+			<attribut name ="distance" type="BigInt" size1="19" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="serie" x="1101" y="8">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="nom" type="Varchar" size1="256" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="skypper" x="571" y="314">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+
+		</entite>
+
+		<entite name="voilier" x="1437" y="213">
+			<attribut name ="id" type="Int" size1="10" size2="0" key="PRIMARY KEY" isnull="false" comment=""/>
+			<attribut name ="numero_voile" type="Smallint" size1="5" size2="0" key="" isnull="false" comment=""/>
+
+		</entite>
+
+		<relation name="association0" x="1290" y="18">
+
+		</relation>
+
+		<relation name="association1" x="195" y="403">
+
+		</relation>
+
+		<relation name="association2" x="355" y="393">
+
+		</relation>
+
+		<relation name="association3" x="348" y="242">
+
+		</relation>
+
+		<relation name="association4" x="822" y="488">
+
+		</relation>
+
+		<relation name="association5" x="1480" y="333">
+
+		</relation>
+
+		<relation name="association6" x="938" y="360">
+
+		</relation>
+
+		<relation name="association7" x="1334" y="472">
+
+		</relation>
+
+		<relation name="association8" x="41" y="549">
+
+		</relation>
+
+		<relation name="association9" x="363" y="565">
+
+		</relation>
+
+		<relation name="association10" x="739" y="322">
+
+		</relation>
+
+		<relation name="association11" x="745" y="243">
+
+		</relation>
+
+		<relation name="association12" x="31" y="416">
+
+		</relation>
+
+		<relation name="association13" x="168" y="93">
+
+		</relation>
+
+		<relation name="association14" x="19" y="89">
+
+		</relation>
+
+		<relation name="association15" x="434" y="471">
+
+		</relation>
+
+		<relation name="association16" x="691" y="544">
+
+		</relation>
+
+		<relation name="association17" x="345" y="152">
+
+		</relation>
+
+		<relation name="association18" x="534" y="5">
+
+		</relation>
+
+		<relation name="association19" x="374" y="630">
+
+		</relation>
+
+		<relation name="association20" x="371" y="314">
+
+		</relation>
+
+		<relation name="association21" x="1093" y="115">
+
+		</relation>
+
+		<relation name="association22" x="1475" y="118">
+
+		</relation>
+
+	</entitiesList>
+	<LinkList>
+		<link name=" " card="0,n" elem1="serie" elem2="association0" casse="false" x="61.0" y="39.0" />
+		<link name=" " card="1,1" elem1="classe" elem2="association0" casse="false" x="53.0" y="31.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association1" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="commissaire" elem2="association1" casse="false" x="55.0" y="33.0" />
+		<link name=" " card="0,n" elem1="comite" elem2="association2" casse="false" x="54.0" y="33.0" />
+		<link name=" " card="1,1" elem1="commissaire" elem2="association2" casse="false" x="55.0" y="33.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association3" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="concurent" elem2="association3" casse="false" x="55.0" y="34.0" />
+		<link name=" " card="0,n" elem1="regatte" elem2="association4" casse="false" x="60.0" y="39.0" />
+		<link name=" " card="1,1" elem1="course" elem2="association4" casse="false" x="56.0" y="34.0" />
+		<link name=" " card="0,n" elem1="voilier" elem2="association5" casse="false" x="62.0" y="40.0" />
+		<link name=" " card="1,1" elem1="course" elem2="association5" casse="false" x="56.0" y="34.0" />
+		<link name=" " card="0,n" elem1="equipage" elem2="association6" casse="false" x="57.0" y="35.0" />
+		<link name=" " card="1,1" elem1="course" elem2="association6" casse="false" x="56.0" y="34.0" />
+		<link name=" " card="0,n" elem1="code" elem2="association7" casse="false" x="54.0" y="32.0" />
+		<link name=" " card="1,1" elem1="course" elem2="association7" casse="false" x="56.0" y="34.0" />
+		<link name=" " card="0,n" elem1="jury" elem2="association8" casse="false" x="57.0" y="36.0" />
+		<link name=" " card="1,1" elem1="enregistrer" elem2="association8" casse="false" x="56.0" y="35.0" />
+		<link name=" " card="0,n" elem1="regatte" elem2="association9" casse="false" x="60.0" y="39.0" />
+		<link name=" " card="1,1" elem1="enregistrer" elem2="association9" casse="false" x="56.0" y="35.0" />
+		<link name=" " card="0,n" elem1="skypper" elem2="association10" casse="false" x="61.0" y="40.0" />
+		<link name=" " card="1,1" elem1="equipage" elem2="association10" casse="false" x="57.0" y="35.0" />
+		<link name=" " card="0,n" elem1="concurent" elem2="association11" casse="false" x="55.0" y="34.0" />
+		<link name=" " card="1,1" elem1="equipage" elem2="association11" casse="false" x="57.0" y="35.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association12" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="jury" elem2="association12" casse="false" x="57.0" y="36.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association13" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="membres" elem2="association13" casse="false" x="58.0" y="36.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association14" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="personnel" elem2="association14" casse="false" x="59.0" y="37.0" />
+		<link name=" " card="0,n" elem1="commissaire" elem2="association15" casse="false" x="55.0" y="33.0" />
+		<link name=" " card="1,1" elem1="pointe" elem2="association15" casse="false" x="59.0" y="38.0" />
+		<link name=" " card="0,n" elem1="regatte" elem2="association16" casse="false" x="60.0" y="39.0" />
+		<link name=" " card="1,1" elem1="pointe" elem2="association16" casse="false" x="59.0" y="38.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association17" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="proprietaire" elem2="association17" casse="false" x="60.0" y="38.0" />
+		<link name=" " card="0,n" elem1="club" elem2="association18" casse="false" x="53.0" y="32.0" />
+		<link name=" " card="1,1" elem1="proprietaire" elem2="association18" casse="false" x="60.0" y="38.0" />
+		<link name=" " card="0,n" elem1="challenge" elem2="association19" casse="false" x="52.0" y="31.0" />
+		<link name=" " card="1,1" elem1="regatte" elem2="association19" casse="false" x="60.0" y="39.0" />
+		<link name=" " card="0,n" elem1="personne" elem2="association20" casse="false" x="58.0" y="37.0" />
+		<link name=" " card="1,1" elem1="skypper" elem2="association20" casse="false" x="61.0" y="40.0" />
+		<link name=" " card="0,n" elem1="proprietaire" elem2="association21" casse="false" x="60.0" y="38.0" />
+		<link name=" " card="1,1" elem1="voilier" elem2="association21" casse="false" x="62.0" y="40.0" />
+		<link name=" " card="0,n" elem1="classe" elem2="association22" casse="false" x="53.0" y="31.0" />
+		<link name=" " card="1,1" elem1="voilier" elem2="association22" casse="false" x="62.0" y="40.0" />
+	</LinkList>
+	<heritageList>
+	</heritageList>
+</MCD>
+</work>
