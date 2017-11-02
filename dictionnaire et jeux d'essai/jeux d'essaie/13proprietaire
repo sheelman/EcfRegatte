@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `proprietaire`
+--
+
+INSERT INTO `proprietaire` (`id`, `id_personne`, `id_club`) VALUES
+(1, 2, 1),
+(2, 9, 2);

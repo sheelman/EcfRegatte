@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `course`
+--
+
+INSERT INTO `course` (`id`, `numero_inscription_valide`, `nombre_point`, `temps_reel`, `position`, `id_regatte`, `id_voilier`, `id_equipage`, `id_code`) VALUES
+(1, '142525R6', 3, '01:22:00', 3, 1, 1, 1, 1),
+(2, '2584R6', 4, '02:50:00', 4, 1, 2, 2, 5);

@@ -1,0 +1,15 @@
+--
+-- Contenu de la table `code`
+--
+
+INSERT INTO `code` (`id`, `nom`) VALUES
+(1, 'OK'),
+(2, 'DNC'),
+(3, 'DNS'),
+(4, 'OCS'),
+(5, 'ZFP'),
+(6, 'BFD'),
+(7, 'DNF'),
+(8, 'RAF'),
+(9, 'DSQ'),
+(10, 'DNE et DGM');

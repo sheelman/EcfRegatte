@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `pointe`
+--
+
+INSERT INTO `pointe` (`id`, `id_commissaire`, `id_regatte`) VALUES
+(1, 1, 1);

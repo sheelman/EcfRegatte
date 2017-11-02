@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `enregistrer`
+--
+
+INSERT INTO `enregistrer` (`id`, `id_jury`, `id_regatte`) VALUES
+(1, 1, 1);

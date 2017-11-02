@@ -1,0 +1,14 @@
+--
+-- Contenu de la table `personne`
+--
+
+INSERT INTO `personne` (`id`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `telephone`, `email`, `date_naissance`, `affilie_FFV`, `numero_licence`, `date_licence`) VALUES
+(1, 'Le Hegarat', 'Marcel', '1 rue des près', '29300', 'rédéné', '668443965', 'marcel@gmail.com', '1960-12-21', 1, '12548', '2017-01-22'),
+(2, 'Martin', 'Marcel', 'le biberon', '52000', 'le rhum', '522555225', 'martin@gmail.com', '1952-08-05', 1, '56255', '2017-01-01'),
+(3, 'Malmal', 'thibault', 'lestand', '56200', 'plouay', '645825962', 'MT@gmail.com', '1998-08-15', 1, '25852', '2017-02-02'),
+(4, 'Kurszt', 'trash', 'palourde', '72000', 'le mans', '256759502', 'kursz@gmail.com', '2001-06-25', 1, '45874', '2017-01-03'),
+(5, 'Kateau', 'arnaud', '15 bd leclerc', '22100', 'dinan', '685459625', 'arn@gmail.com', '1999-01-06', 1, '58652', '2017-01-04'),
+(6, 'Morgane', 'clara', 'allé du strip', '95000', 'passy', '60000006', 'claramorgane@hotmail.com', '1978-04-04', 0, 'non licencié', NULL),
+(7, 'Saquet', 'Bilbon', 'la compté', '74000', 'chamberry', '258569845', 'bilbon@gmail.com', '2002-02-15', 1, '58526', '2017-03-05'),
+(8, 'Letroc', 'pierre', 'laroc', '58000', 'saint andré', '745855858', 'groas@gmail.com', '1956-01-22', 1, '85642', '2017-03-05'),
+(9, 'De La montagne', 'Hubert', 'cote du chenil', '45000', 'orléans', '356825255', 'hub@gmail.com', '1995-05-31', 0, 'non licencié', NULL);

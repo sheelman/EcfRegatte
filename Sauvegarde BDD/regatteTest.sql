@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 02 Novembre 2017 à 16:23
+-- Généré le :  Jeu 02 Novembre 2017 à 18:26
 -- Version du serveur :  5.7.20-0ubuntu0.17.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.17.04.1
 
@@ -79,17 +79,17 @@ DELIMITER ;
 CREATE TABLE `challenge` (
   `id` int(11) NOT NULL,
   `nom` varchar(256) NOT NULL,
-  `mois_debut` varchar(256) NOT NULL,
-  `mois_fin` varchar(256) NOT NULL
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `challenge`
 --
 
-INSERT INTO `challenge` (`id`, `nom`, `mois_debut`, `mois_fin`) VALUES
-(1, 'Ete', 'mai', 'septembre'),
-(2, 'Hiver', 'novembre', 'mars');
+INSERT INTO `challenge` (`id`, `nom`, `date_debut`, `date_fin`) VALUES
+(1, 'Ete', '2017-05-01', '2017-09-30'),
+(2, 'Hiver', '2017-11-01', '2017-03-31');
 
 -- --------------------------------------------------------
 
@@ -447,7 +447,7 @@ CREATE TABLE `regatte` (
 --
 
 INSERT INTO `regatte` (`id`, `nom`, `date`, `lieu`, `numero_course`, `distance`, `id_challenge`) VALUES
-(1, 'bai de saint brieuc', '2017-09-15', 'saint-brieuc', 6, 5000, 2),
+(1, 'bai de saint brieuc', '2017-11-01', 'saint-brieuc', 6, 5000, 2),
 (2, 'La route de lorient', '2017-06-15', 'lorient', 4, 10000, 1);
 
 -- --------------------------------------------------------

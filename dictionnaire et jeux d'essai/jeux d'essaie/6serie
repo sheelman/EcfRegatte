@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `serie`
+--
+
+INSERT INTO `serie` (`id`, `nom`) VALUES
+(1, 'Habitable'),
+(2, 'Quillards sport');

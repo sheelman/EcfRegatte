@@ -1,0 +1,9 @@
+-- Contenu de la table `club`
+--
+
+INSERT INTO `club` (`id`, `nom`) VALUES
+(1, 'YC Val André'),
+(2, 'YC Binic'),
+(3, 'YC Le Lequé'),
+(4, 'YC Saint Quay');
+

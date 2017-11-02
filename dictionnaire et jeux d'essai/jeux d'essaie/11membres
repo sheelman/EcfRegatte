@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `membres`
+--
+
+INSERT INTO `membres` (`id`, `pseudo`, `pwd`, `id_personne`) VALUES
+(1, 'secretaire', '1234', 6);

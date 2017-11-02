@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `skypper`
+--
+
+INSERT INTO `skypper` (`id`, `id_personne`) VALUES
+(1, 2),
+(2, 5);

@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `jury`
+--
+
+INSERT INTO `jury` (`id`, `id_personne`) VALUES
+(1, 7);

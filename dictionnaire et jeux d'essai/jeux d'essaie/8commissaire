@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `commissaire`
+--
+
+INSERT INTO `commissaire` (`id`, `id_personne`, `id_comite`) VALUES
+(1, 1, 1);

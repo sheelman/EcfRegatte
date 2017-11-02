@@ -1,0 +1,11 @@
+--
+-- Contenu de la table `voilier`
+--
+
+INSERT INTO `voilier` (`id`, `numero_voile`, `id_propietaire`, `id_classe`) VALUES
+(1, 7, 1, 13),
+(2, 199, 2, 16);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

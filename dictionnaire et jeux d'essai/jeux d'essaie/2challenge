@@ -1,0 +1,6 @@
+-- Contenu de la table `challenge`
+--
+
+INSERT INTO `challenge` (`id`, `nom`, `date_debut`, `date_fin`) VALUES
+(1, 'Ete', '2017-05-01', '2017-09-30'),
+(2, 'Hiver', '2017-11-01', '2017-03-31');

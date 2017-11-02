@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `equipage`
+--
+
+INSERT INTO `equipage` (`id`, `nom`, `id_skypper`, `id_concurent`) VALUES
+(1, 'team Val', 1, 1),
+(2, 'team bi', 2, 2);

@@ -1,0 +1,6 @@
+--
+-- Contenu de la table `personnel`
+--
+
+INSERT INTO `personnel` (`id`, `status`, `id_personne`) VALUES
+(1, 'secrétaire', 6);

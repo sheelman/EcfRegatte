@@ -1,0 +1,8 @@
+--
+-- Contenu de la table `concurent`
+--
+
+INSERT INTO `concurent` (`id`, `id_personne`) VALUES
+(1, 3),
+(2, 4),
+(3, 5);

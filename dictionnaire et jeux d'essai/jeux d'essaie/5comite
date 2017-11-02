@@ -1,0 +1,8 @@
+-- Contenu de la table `comite`
+--
+
+INSERT INTO `comite` (`id`, `nom`) VALUES
+(1, 'Bretagne'),
+(2, 'Normandie'),
+(3, 'Ile de france');
+

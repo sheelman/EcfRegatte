@@ -1,0 +1,7 @@
+--
+-- Contenu de la table `regatte`
+--
+
+INSERT INTO `regatte` (`id`, `nom`, `date`, `lieu`, `numero_course`, `distance`, `id_challenge`) VALUES
+(1, 'bai de saint brieuc', '2017-09-15', 'saint-brieuc', 6, 5000, 2),
+(2, 'La route de lorient', '2017-06-15', 'lorient', 4, 10000, 1);
