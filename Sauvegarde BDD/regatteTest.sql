@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 02 Novembre 2017 à 09:08
+-- Généré le :  Jeu 02 Novembre 2017 à 16:23
 -- Version du serveur :  5.7.20-0ubuntu0.17.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.17.04.1
 
@@ -24,11 +24,48 @@ DELIMITER $$
 --
 -- Procédures
 --
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `Intervention_commissaire` (IN `id_challenge` INT, IN `date_debut` DATE, IN `date_fin` DATE)  NO SQL
+SELECT cod.nom AS INTERVENTION, pc.nom AS COMMISSAIRE, com.nom AS COMITE, r.nom AS REGATTE, r.date AS DATE
+FROM `regatte` r
+INNER JOIN `course` co
+ON co.id_regatte = r.id
+INNER JOIN `code` cod
+ON cod.id = co.id_code
+INNER JOIN `pointe` p
+ON p.id_regatte = r.id
+INNER JOIN `commissaire` c
+ON c.id = p.id_commissaire
+INNER JOIN `comite` com
+ON com.id = c.id_comite
+INNER JOIN `personne` pc
+ON pc.id = c.id_personne
+WHERE r.id_challenge = id_challenge and r.date > date_debut and r.date < date_fin$$
+
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `Liste_equipage_par_voilier_pour_une_regatte` (IN `id_regatte` INT, IN `id_voilier` INT)  NO SQL
+SELECT r.nom AS REGATTE, pc.nom AS CONCURENT, ps.nom AS SKYPPER, v.numero_voile AS VOILE
+FROM `course` co
+INNER JOIN `regatte` r
+ON r.id = co.id_regatte
+INNER JOIN `voilier` v
+ON v.id = co.id_voilier
+INNER JOIN `equipage` eq
+ON eq.id = co.id_equipage
+INNER JOIN `skypper`s
+ON s.id = eq.id_skypper
+INNER JOIN `personne`ps
+ON ps.id = s.id_personne
+INNER JOIN `concurent`c
+ON c.id = eq.id_concurent
+INNER JOIN `personne` pc
+ON pc.id = c.id_personne
+WHERE co.id_regatte = id_regatte AND co.id_voilier = id_voilier$$
+
 CREATE DEFINER=`admin`@`localhost` PROCEDURE `Moyenne_des_distance_regate_pour_un_challenge` (IN `id_challenge` INT)  NO SQL
 SELECT c.nom AS CHALLENGE, AVG(r.distance) AS MOYENNEDISTANCECOURU
 FROM `challenge` c
 INNER JOIN `regatte` r
 ON c.id= r.id_challenge
+WHERE c.id = id_challenge
 GROUP BY c.nom$$
 
 DELIMITER ;
@@ -410,7 +447,8 @@ CREATE TABLE `regatte` (
 --
 
 INSERT INTO `regatte` (`id`, `nom`, `date`, `lieu`, `numero_course`, `distance`, `id_challenge`) VALUES
-(1, 'bai de saint brieuc', '2017-09-15', 'saint-brieuc', 6, 5000, 2);
+(1, 'bai de saint brieuc', '2017-09-15', 'saint-brieuc', 6, 5000, 2),
+(2, 'La route de lorient', '2017-06-15', 'lorient', 4, 10000, 1);
 
 -- --------------------------------------------------------
 
@@ -706,7 +744,7 @@ ALTER TABLE `proprietaire`
 -- AUTO_INCREMENT pour la table `regatte`
 --
 ALTER TABLE `regatte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `serie`
 --
