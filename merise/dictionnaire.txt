@@ -1,0 +1,137 @@
+Dictionnaire de données 
+
+Nom : id
+Type : Int
+Taille : 10,0
+Commentaire : 
+
+Nom : nom
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : mois_debut
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : mois_fin
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : coefficient
+Type : Float
+Taille : 12,0
+Commentaire : 
+
+Nom : numero_inscription_valide
+Type : Mediumint
+Taille : 7,0
+Commentaire : 
+
+Nom : nombre_point
+Type : TinyINT
+Taille : 3,0
+Commentaire : 
+
+Nom : temps_reel
+Type : Time
+Taille : 8,0
+Commentaire : 
+
+Nom : position
+Type : Smallint
+Taille : 5,0
+Commentaire : 
+
+Nom : pseudo
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : pwd
+Type : Char
+Taille : 8,0
+Commentaire : 
+
+Nom : prenom
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : adresse
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : code_postal
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : ville
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : telephone
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : email
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : date_naissance
+Type : Date
+Taille : 10,0
+Commentaire : 
+
+Nom : affilie_FFV
+Type : INDEFINI
+Taille : 0,0
+Commentaire : 
+
+Nom : numero_licence
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : date_licence
+Type : Date
+Taille : 10,0
+Commentaire : 
+
+Nom : status
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : lieu
+Type : Varchar
+Taille : 256,0
+Commentaire : 
+
+Nom : numero_course
+Type : TinyINT
+Taille : 3,0
+Commentaire : 
+
+Nom : distance
+Type : BigInt
+Taille : 19,0
+Commentaire : 
+
+Nom : numero_voile
+Type : Smallint
+Taille : 5,0
+Commentaire : 
+
+Nom : affilie_FFV
+Type : Bool
+Taille : 0,0
+Commentaire : 
+
