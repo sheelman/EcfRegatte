@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Jeu 02 Novembre 2017 à 18:26
+-- Généré le :  Ven 03 Novembre 2017 à 11:51
 -- Version du serveur :  5.7.20-0ubuntu0.17.04.1
 -- Version de PHP :  7.0.22-0ubuntu0.17.04.1
 
@@ -68,6 +68,26 @@ ON c.id= r.id_challenge
 WHERE c.id = id_challenge
 GROUP BY c.nom$$
 
+--
+-- Fonctions
+--
+CREATE DEFINER=`admin`@`localhost` FUNCTION `code` (`id_challenge` INT, `regatte_date` DATE) RETURNS VARCHAR(10) CHARSET utf8 NO SQL
+BEGIN
+DECLARE challengeCode VARCHAR(5);
+DECLARE numeroRegatte INT(4) DEFAULT 0;
+SELECT code INTO challengeCode
+FROM `challenge` c
+WHERE c.id = id_challenge;
+SELECT COUNT(r.id)+1 INTO numeroRegatte
+FROM `regatte` r
+INNER JOIN `challenge` c
+ON c.id = r.id_challenge
+WHERE c.id = 1
+GROUP BY c.id;
+
+RETURN CONCAT(challengeCode, '-', MONTH(regatte_date), '-', numeroRegatte);
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -89,7 +109,7 @@ CREATE TABLE `challenge` (
 
 INSERT INTO `challenge` (`id`, `nom`, `date_debut`, `date_fin`) VALUES
 (1, 'Ete', '2017-05-01', '2017-09-30'),
-(2, 'Hiver', '2017-11-01', '2017-03-31');
+(2, 'Hiver', '2017-11-01', '2018-03-31');
 
 -- --------------------------------------------------------
 
@@ -226,6 +246,7 @@ CREATE TABLE `concurent` (
 INSERT INTO `concurent` (`id`, `id_personne`) VALUES
 (1, 3),
 (2, 4),
+(4, 4),
 (3, 5);
 
 -- --------------------------------------------------------
@@ -253,6 +274,34 @@ CREATE TABLE `course` (
 INSERT INTO `course` (`id`, `numero_inscription_valide`, `nombre_point`, `temps_reel`, `position`, `id_regatte`, `id_voilier`, `id_equipage`, `id_code`) VALUES
 (1, '142525R6', 3, '01:22:00', 3, 1, 1, 1, 1),
 (2, '2584R6', 4, '02:50:00', 4, 1, 2, 2, 5);
+
+--
+-- Déclencheurs `course`
+--
+DELIMITER $$
+CREATE TRIGGER `before_update_course` BEFORE UPDATE ON `course` FOR EACH ROW BEGIN
+DECLARE numeroVoile INT(6) DEFAULT 0;
+DECLARE	id_classe_voilier INT(11);
+SELECT COUNT(cou.id)
+INTO numeroVoile
+FROM `course` cou
+INNER JOIN `voilier` v
+ON v.id = cou.id_voilier
+INNER JOIN `classe` c
+ON c.id = v.id_classe
+WHERE cou.id_regatte = NEW.id_regatte
+AND v.id_classe = id_classe_voilier
+GROUP BY cou.id_regatte;
+SELECT id_classe
+INTO id_classe_voilier
+FROM `voilier` v
+WHERE v.id = NEW.id_voilier;
+IF numeroVoile < NEW.position THEN
+SIGNAL SQLSTATE '04032' SET MESSAGE_TEXT = 'Place superieur on nombre de participants', MYSQL_ERRNO = 4032;
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -292,7 +341,8 @@ CREATE TABLE `equipage` (
 
 INSERT INTO `equipage` (`id`, `nom`, `id_skypper`, `id_concurent`) VALUES
 (1, 'team Val', 1, 1),
-(2, 'team bi', 2, 2);
+(2, 'team bi', 2, 2),
+(3, '', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -366,7 +416,8 @@ INSERT INTO `personne` (`id`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`
 (6, 'Morgane', 'clara', 'allé du strip', '95000', 'passy', '60000006', 'claramorgane@hotmail.com', '1978-04-04', 0, 'non licencié', NULL),
 (7, 'Saquet', 'Bilbon', 'la compté', '74000', 'chamberry', '258569845', 'bilbon@gmail.com', '2002-02-15', 1, '58526', '2017-03-05'),
 (8, 'Letroc', 'pierre', 'laroc', '58000', 'saint andré', '745855858', 'groas@gmail.com', '1956-01-22', 1, '85642', '2017-03-05'),
-(9, 'De La montagne', 'Hubert', 'cote du chenil', '45000', 'orléans', '356825255', 'hub@gmail.com', '1995-05-31', 0, 'non licencié', NULL);
+(9, 'De La montagne', 'Hubert', 'cote du chenil', '45000', 'orléans', '356825255', 'hub@gmail.com', '1995-05-31', 0, 'non licencié', NULL),
+(10, 'Le fort', 'clarisse', 'le sourn', '56200', 'plouay', '0668443962', 'Lefort@gmail.com', '2000-12-20', 1, '12355', '2017-01-20');
 
 -- --------------------------------------------------------
 
@@ -424,7 +475,8 @@ CREATE TABLE `proprietaire` (
 
 INSERT INTO `proprietaire` (`id`, `id_personne`, `id_club`) VALUES
 (1, 2, 1),
-(2, 9, 2);
+(2, 9, 2),
+(3, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -448,7 +500,38 @@ CREATE TABLE `regatte` (
 
 INSERT INTO `regatte` (`id`, `nom`, `date`, `lieu`, `numero_course`, `distance`, `id_challenge`) VALUES
 (1, 'bai de saint brieuc', '2017-11-01', 'saint-brieuc', 6, 5000, 2),
-(2, 'La route de lorient', '2017-06-15', 'lorient', 4, 10000, 1);
+(2, 'La route de lorient', '2017-06-15', 'lorient', 4, 10000, 1),
+(3, 'la route du rhum', '2018-03-01', 'Saint malo', 9, 100000, 2);
+
+--
+-- Déclencheurs `regatte`
+--
+DELIMITER $$
+CREATE TRIGGER `before_create_regatte` BEFORE INSERT ON `regatte` FOR EACH ROW BEGIN
+DECLARE debutChallenge DATE;
+DECLARE finChallenge DATE;
+SELECT date_debut, date_fin
+INTO debutChallenge, finChallenge
+FROM `challenge` c
+WHERE c.id = NEW.id_challenge;
+IF NEW.date < debutChallenge OR NEW.date > finChallenge
+THEN SIGNAL SQLSTATE '04031' SET MESSAGE_TEXT = 'Mauvaise date hors zone de challenge', MYSQL_ERRNO = 4031;
+END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_delete_regatte` BEFORE DELETE ON `regatte` FOR EACH ROW BEGIN
+DECLARE finChallenge DATE;
+SELECT date_fin INTO finChallenge
+FROM `challenge` c
+WHERE c.id = OLD.id_challenge;
+IF now() < finChallenge THEN
+SIGNAL SQLSTATE '04033' SET MESSAGE_TEXT = 'Impossible de supprimer le challenge n'est pas fini', MYSQL_ERRNO = 4033;
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -486,7 +569,8 @@ CREATE TABLE `skypper` (
 
 INSERT INTO `skypper` (`id`, `id_personne`) VALUES
 (1, 2),
-(2, 5);
+(2, 5),
+(3, 10);
 
 -- --------------------------------------------------------
 
@@ -507,7 +591,8 @@ CREATE TABLE `voilier` (
 
 INSERT INTO `voilier` (`id`, `numero_voile`, `id_propietaire`, `id_classe`) VALUES
 (1, 7, 1, 13),
-(2, 199, 2, 16);
+(2, 199, 2, 16),
+(3, 25, 3, 14);
 
 --
 -- Index pour les tables exportées
@@ -694,12 +779,12 @@ ALTER TABLE `commissaire`
 -- AUTO_INCREMENT pour la table `concurent`
 --
 ALTER TABLE `concurent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `enregistrer`
 --
@@ -709,7 +794,7 @@ ALTER TABLE `enregistrer`
 -- AUTO_INCREMENT pour la table `equipage`
 --
 ALTER TABLE `equipage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `jury`
 --
@@ -724,7 +809,7 @@ ALTER TABLE `membres`
 -- AUTO_INCREMENT pour la table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `personnel`
 --
@@ -739,12 +824,12 @@ ALTER TABLE `pointe`
 -- AUTO_INCREMENT pour la table `proprietaire`
 --
 ALTER TABLE `proprietaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `regatte`
 --
 ALTER TABLE `regatte`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `serie`
 --
@@ -754,12 +839,12 @@ ALTER TABLE `serie`
 -- AUTO_INCREMENT pour la table `skypper`
 --
 ALTER TABLE `skypper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `voilier`
 --
 ALTER TABLE `voilier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
