@@ -7,6 +7,7 @@ package com.kdg3.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,21 +15,32 @@ import java.sql.DriverManager;
  */
 public class JDBConnect {
     public static Connection getConnection() {
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver O.K.");
-            
+        
+        //information d'accès à la base de données
         String url = "jdbc:mysql://localhost/regatteTest";
         String user = "admin";
         String passwd = "admin";
-        conn = DriverManager.getConnection(url, user, passwd);  
-        System.out.println("Connexion regatteTest!");
+        Connection con = null;
+        
+        try {
+            // Etape 1 : chargement du driver
+            Class.forName("com.mysql.jdbc.Driver");
+            //visualisation dans la console que driver est chargé
+            System.out.println("Driver O.K.");
+            
+            //Etape 2 : récupération de la connection            
+            con = DriverManager.getConnection(url, user, passwd);
+            //visualisation dans la console que connexion BDD effectué
+            System.out.println("Connexion regatteTest!");
+                        
 
-    } catch (Exception e) {
+    } catch (ClassNotFoundException | SQLException e) {
+        //Si la connection ce fait pas montre les exception
         e.printStackTrace();
+        //visualisation dans la console que la connexion a échoué
+        System.out.println("la connexion est echoué");
     }
-    return conn;
+    return con;
 }
 
 }

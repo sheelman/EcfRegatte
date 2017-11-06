@@ -12,7 +12,7 @@ import static com.kdg3.DAO.JDBConnect.getConnection;
  *
  * @author sheelman
  */
-public class Launcher {
+public class LauncherJDBConnect {
 
     /**
      * @param args the command line arguments
