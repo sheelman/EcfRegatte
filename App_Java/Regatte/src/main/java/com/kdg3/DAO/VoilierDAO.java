@@ -48,10 +48,10 @@ public class VoilierDAO {
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     int numero_voile = rs.getInt("numero_voile");
-                    ProprietaireModele id_proprietaire = ProprietaireDAO.findOnedById(rs.getInt("id_proprietaire"));
-                    ClasseModele id_classe = ClasseDAO.findOnedById(rs.getInt("id_classe"));
+                    ProprietaireModele proprietaire = ProprietaireDAO.findOnedById(rs.getInt("id_proprietaire"));
+                    ClasseModele classe = ClasseDAO.findOnedById(rs.getInt("id_classe"));
                     
-                    VoilierModele vlm = new VoilierModele(id, numero_voile, id_proprietaire, id_classe);
+                    VoilierModele vlm = new VoilierModele(id, numero_voile, proprietaire, classe);
                                         
                     ListVoiliers.add(vlm);
                 }
