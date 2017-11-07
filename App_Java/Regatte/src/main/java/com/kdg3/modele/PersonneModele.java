@@ -13,18 +13,18 @@ import java.util.Date;
  */
 public class PersonneModele {
     
-    int id;
-    String nom;
-    String prenom;
-    String adresse;
-    String code_postal;
-    String ville;
-    String telephone;
-    String email;
-    Date date_naissance;
-    boolean affilie_FFV;
-    String numero_licence;
-    Date date_licence;
+    private int id;
+    private String nom;
+    private String prenom;
+    private String adresse;
+    private String code_postal;
+    private String ville;
+    private String telephone;
+    private String email;
+    private Date date_naissance;
+    private boolean affilie_FFV;
+    private String numero_licence;
+    private Date date_licence;
 
     public PersonneModele(int id, String nom, String prenom, String adresse, String code_postal, String ville, String telephone, String email, Date date_naissance, boolean affilie_FFV, String numero_licence, Date date_licence) {
         this.id = id;
@@ -151,9 +151,5 @@ public class PersonneModele {
         this.date_licence = date_licence;
     }
 
-    @Override
-    public String toString() {
-        return nom + " " + prenom;
-    }
     
 }

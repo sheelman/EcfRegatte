@@ -11,8 +11,17 @@ package com.kdg3.modele;
  */
 public class ClubModele {
     
-    int id;
-    String nom;
+    private int id;
+    private String nom;
+
+    public ClubModele(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    public ClubModele(String nom) {
+        this.nom = nom;
+    }
 
     public int getId() {
         return id;
@@ -30,23 +39,5 @@ public class ClubModele {
         this.nom = nom;
     }
 
-
-    public ClubModele(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
-    }
-        
-    public ClubModele(int id) {
-        this.id = id;
-    }
-    
-    public ClubModele(String nom) {
-        this.nom = nom;
-    }
-
-    @Override
-    public String toString() {
-        return "Club " + "nom=" + " " + nom ;
-    }
 
 }

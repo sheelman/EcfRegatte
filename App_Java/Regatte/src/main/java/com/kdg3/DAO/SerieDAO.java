@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,8 +22,9 @@ import java.util.List;
  */
 public class SerieDAO {
     //**************************** R READ  *************************************
+    
      /**
-     * retourne la liste club
+     * retourne la liste serie
      *
      * @return
      */
@@ -32,6 +35,7 @@ public class SerieDAO {
 
         List<SerieModele> ListSeries = new ArrayList<>();
         Statement stm;
+        
         try {
             stm = c.createStatement();
 
@@ -39,20 +43,22 @@ public class SerieDAO {
             ResultSet rs = stm.executeQuery(sql);
             
                 while (rs.next()) {
-                    int id = rs.getInt("serie.id");
-                    String nom = rs.getString("serie.nom");
+                    int id = rs.getInt("id");
+                    String nom = rs.getString("nom");
                     
                     SerieModele sem = new SerieModele(id, nom);
                                         
                     ListSeries.add(sem);
                 }
+                
                 rs.close();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+                return ListSeries;
+                
+        }catch(SQLException ex) {
+            Logger.getLogger(SerieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return ListSeries;
+        
+        return null;
     }
 
     public static SerieModele findOnedById(int id) {
@@ -64,27 +70,32 @@ public class SerieDAO {
         try {
             stm = c.createStatement();
             
-            String sql="select * from serie WHERE id_serie="+id;
+            String sql="select * from serie WHERE id="+id;
             ResultSet rs = stm.executeQuery(sql);
             
             if (rs.next()) {
-                String nom = rs.getString("serie.nom");
+                String nom = rs.getString("nom");
+                
                 sem = new SerieModele(id, nom);
+                      
+                return sem;
             }
             
-        } catch (SQLException e) {
-        e.printStackTrace();
-        throw new RuntimeException();
+        } catch (SQLException ex) {
+            Logger.getLogger(SerieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return sem;
+        
+        return null;
     }
     
-    /**
-    *CRUD
-    *
-    */
     //*************************** C CREATE *************************************
+    
+    /**
+     * CRUD
+     * 
+     * @param sem
+     * @throws Exception 
+     */
     public static void create(SerieModele sem) throws Exception {
 
         Connection c = JDBConnect.getConnection();
@@ -99,11 +110,13 @@ public class SerieDAO {
         if (rs.next()) {
             sem.setId(rs.getInt(1));
         }
+        
         stm.close();
     }
     
     //***************************** U UPDATE ***********************************
     public static void update(SerieModele sem) throws Exception {
+        
         Connection c = JDBConnect.getConnection();
         PreparedStatement stm;
         
@@ -115,13 +128,13 @@ public class SerieDAO {
             stm.executeUpdate();
 
         } catch (SQLException e) {
-
             throw new Exception("pb lors de la mise a jour de serie:" + e.getMessage());
         }
     }
     
     //**************************** D DELETE ************************************
     public static void delete(SerieModele sem) throws Exception {
+        
         Connection c = JDBConnect.getConnection();
         PreparedStatement stm;
         
@@ -132,7 +145,6 @@ public class SerieDAO {
             stm.executeUpdate();
 
         } catch (SQLException e) {
-
             throw new Exception("pb lors de la suppression de serie:" + e.getMessage());
         }
     }

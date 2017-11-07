@@ -11,10 +11,10 @@ package com.kdg3.modele;
  */
 public class ClasseModele {
     
-    int id;
-    String nom;
-    Float coefficient;
-    SerieModele serie;
+    private int id;
+    private String nom;
+    private Float coefficient;
+    private SerieModele serie;
 
     public ClasseModele(int id, String nom, Float coefficient, SerieModele serie) {
         this.id = id;
@@ -60,5 +60,6 @@ public class ClasseModele {
     public void setSerie(SerieModele serie) {
         this.serie = serie;
     }
+    
     
 }

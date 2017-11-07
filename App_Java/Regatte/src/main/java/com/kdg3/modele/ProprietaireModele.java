@@ -13,21 +13,20 @@ import java.util.Date;
  */
 public class ProprietaireModele extends PersonneModele{
     
-    int id;
-    ClubModele club;
+    private int id;
+    private ClubModele club;
 
-    public ProprietaireModele(int id, ClubModele club, int idpersonne, String nom, String prenom, String adresse, String code_postal, String ville, String telephone, String email, Date date_naissance, boolean affilie_FFV, String numero_licence, Date date_licence) {
-        super(id, nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie_FFV, numero_licence, date_licence);
+    public ProprietaireModele(int id, ClubModele club, int id_personne, String nom, String prenom, String adresse, String code_postal, String ville, String telephone, String email, Date date_naissance, boolean affilie_FFV, String numero_licence, Date date_licence) {
+        super(id_personne, nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie_FFV, numero_licence, date_licence);
         this.id = id;
         this.club = club;
     }
 
-    public ProprietaireModele(int id, ClubModele club, String nom, String prenom, String adresse, String code_postal, String ville, String telephone, String email, Date date_naissance, boolean affilie_FFV, String numero_licence, Date date_licence) {
+    public ProprietaireModele(ClubModele club, String nom, String prenom, String adresse, String code_postal, String ville, String telephone, String email, Date date_naissance, boolean affilie_FFV, String numero_licence, Date date_licence) {
         super(nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie_FFV, numero_licence, date_licence);
-        this.id = id;
         this.club = club;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -35,7 +34,11 @@ public class ProprietaireModele extends PersonneModele{
     public void setId(int id) {
         this.id = id;
     }
-
+    //va chercher le getId de la classe parent dans personneModele
+    public int getId_personne() {
+        return super.getId();
+    }
+    
     public ClubModele getClub() {
         return club;
     }
@@ -43,7 +46,6 @@ public class ProprietaireModele extends PersonneModele{
     public void setClub(ClubModele club) {
         this.club = club;
     }
-
 
     
 }

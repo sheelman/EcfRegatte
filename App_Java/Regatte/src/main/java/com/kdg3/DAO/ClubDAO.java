@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,11 +22,13 @@ import java.util.List;
  */
 public class ClubDAO {
     //**************************** R READ  *************************************
+    
      /**
-     * retourne la liste club
-     *
-     * @return
-     */
+      * retourne la liste club
+      * 
+      * @return
+      * @throws SQLException 
+      */
     
     public static List<ClubModele> findAll() throws SQLException {
 
@@ -32,6 +36,7 @@ public class ClubDAO {
 
         List<ClubModele> ListClubs = new ArrayList<>();
         Statement stm;
+        
         try {
             stm = c.createStatement();
 
@@ -39,20 +44,21 @@ public class ClubDAO {
             ResultSet rs = stm.executeQuery(sql);
             
                 while (rs.next()) {
-                    int id = rs.getInt("club.id");
-                    String nom = rs.getString("club.nom");
+                    int id = rs.getInt("id");
+                    String nom = rs.getString("nom");
                     
                     ClubModele clm = new ClubModele(id, nom);
                                         
                     ListClubs.add(clm);
                 }
                 rs.close();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+                return ListClubs;
+                
+        }catch(SQLException ex) {
+            Logger.getLogger(ClubDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return ListClubs;
+        
+        return null;
     }
 
     public static ClubModele findOnedById(int id) {
@@ -64,27 +70,32 @@ public class ClubDAO {
         try {
             stm = c.createStatement();
             
-            String sql="select * from club WHERE club.id="+id;
+            String sql="select * from club WHERE id="+id;
             ResultSet rs = stm.executeQuery(sql);
             
             if (rs.next()) {
-                String nom = rs.getString("club.nom");
+                String nom = rs.getString("nom");
                 clm = new ClubModele(id, nom);
+
+                return clm;
             }
             
-        } catch (SQLException e) {
-        e.printStackTrace();
-        throw new RuntimeException();
-        }
 
-        return clm;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClubDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+        
     }
     
-    /**
-    *CRUD
-    *
-    */
     //*************************** C CREATE *************************************
+    
+    /**
+     * 
+     * @param clm
+     * @throws Exception 
+     */
     public static void create(ClubModele clm) throws Exception {
 
         Connection c = JDBConnect.getConnection();
@@ -99,11 +110,13 @@ public class ClubDAO {
         if (rs.next()) {
             clm.setId(rs.getInt(1));
         }
+        
         stm.close();
     }
     
     //***************************** U UPDATE ***********************************
     public static void update(ClubModele clm) throws Exception {
+        
         Connection c = JDBConnect.getConnection();
         PreparedStatement stm;
         
@@ -122,6 +135,7 @@ public class ClubDAO {
     
     //**************************** D DELETE ************************************
     public static void delete(ClubModele clm) throws Exception {
+        
         Connection c = JDBConnect.getConnection();
         PreparedStatement stm;
         

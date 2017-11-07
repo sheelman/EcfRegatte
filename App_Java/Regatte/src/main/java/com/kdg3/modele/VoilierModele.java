@@ -11,10 +11,10 @@ package com.kdg3.modele;
  */
 public class VoilierModele {
     
-    int id;
-    int numero_voile;
-    ProprietaireModele proprietaire;
-    ClasseModele classe;
+    private int id;
+    private int numero_voile;
+    private ProprietaireModele proprietaire;
+    private ClasseModele classe;
 
     public VoilierModele(int id, int numero_voile, ProprietaireModele proprietaire, ClasseModele classe) {
         this.id = id;
@@ -60,5 +60,6 @@ public class VoilierModele {
     public void setClasse(ClasseModele classe) {
         this.classe = classe;
     }
+
    
 }

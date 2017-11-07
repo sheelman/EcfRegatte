@@ -11,8 +11,8 @@ package com.kdg3.modele;
  */
 public class SerieModele {
     
-    int id;
-    String nom;
+    private int id;
+    private String nom;
 
     public SerieModele(int id, String nom) {
         this.id = id;
@@ -38,5 +38,6 @@ public class SerieModele {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
  
 }
