@@ -151,5 +151,10 @@ public class PersonneModele {
         this.date_licence = date_licence;
     }
 
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    }
+
     
 }

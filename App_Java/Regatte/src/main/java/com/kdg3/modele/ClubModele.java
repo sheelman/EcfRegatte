@@ -39,5 +39,10 @@ public class ClubModele {
         this.nom = nom;
     }
 
+    @Override
+    public String toString() {
+        return nom;
+    }
+
 
 }

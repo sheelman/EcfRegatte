@@ -47,5 +47,10 @@ public class ProprietaireModele extends PersonneModele{
         this.club = club;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
     
 }

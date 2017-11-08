@@ -60,6 +60,11 @@ public class ClasseModele {
     public void setSerie(SerieModele serie) {
         this.serie = serie;
     }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
     
     
 }
