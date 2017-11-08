@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class CreationProprietaire extends javax.swing.JPanel {
 
-    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
     /**
      * Creates new form CreationProprietaire
      */
@@ -112,6 +112,22 @@ public class CreationProprietaire extends javax.swing.JPanel {
                 jTextFieldEmailActionPerformed(evt);
             }
         });
+
+        try {
+            jFormattedTextFieldDate_naissance.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldDate_naissance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextFieldDate_naissance.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+
+        try {
+            jFormattedTextFieldDate_licence.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldDate_licence.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextFieldDate_licence.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
 
         jComboBoxClub.setModel(new javax.swing.DefaultComboBoxModel(ClubDAO.findAll().toArray()));
 
@@ -251,7 +267,7 @@ public class CreationProprietaire extends javax.swing.JPanel {
             String numero_licence = jTextFieldNumero_licence.getText();
             String sdate_licence = jFormattedTextFieldDate_licence.getText();
             ClubModele club = (ClubModele) jComboBoxClub.getSelectedItem();
-            if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || code_postal.isEmpty()|| ville.isEmpty()||telephone.isEmpty()||email.isEmpty()|| sdate_naissance.isEmpty()|| numero_licence.isEmpty()|| sdate_licence.isEmpty() ){
+            if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || code_postal.isEmpty()|| ville.isEmpty()/*|| telephone.isEmpty()||email.isEmpty()|| sdate_naissance.isEmpty()|| numero_licence.isEmpty()|| sdate_licence.isEmpty()*/ ){
                 JOptionPane jop;
                 jop=new JOptionPane();
                 jop.showMessageDialog(null,
