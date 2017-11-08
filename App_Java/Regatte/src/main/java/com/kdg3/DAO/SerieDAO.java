@@ -29,7 +29,7 @@ public class SerieDAO {
      * @return
      */
     
-    public static List<SerieModele> findAll() throws SQLException {
+    public static List<SerieModele> findAll() {
 
         Connection c = JDBConnect.getConnection();
 

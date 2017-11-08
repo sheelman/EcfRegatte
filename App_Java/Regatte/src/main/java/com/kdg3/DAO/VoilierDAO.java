@@ -32,7 +32,7 @@ public class VoilierDAO {
      * @throws java.sql.SQLException
      */
     
-    public static List<VoilierModele> findAll() throws SQLException {
+    public static List<VoilierModele> findAll() {
 
         Connection c = JDBConnect.getConnection();
 

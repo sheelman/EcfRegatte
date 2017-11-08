@@ -32,7 +32,7 @@ public class ProprietaireDAO {
      * @throws java.sql.SQLException
      */
     
-    public static List<ProprietaireModele> findAll() throws SQLException {
+    public static List<ProprietaireModele> findAll() {
 
         Connection c = JDBConnect.getConnection();
 
@@ -42,7 +42,7 @@ public class ProprietaireDAO {
         try {
             stm = c.createStatement();
 
-            String sql = "select * from proprietaire INNER JOIN personne";
+            String sql = "select * from proprietaire INNER JOIN personne ON proprietaire.id = personne.id";
             ResultSet rs = stm.executeQuery(sql);
             
                 while (rs.next()) {

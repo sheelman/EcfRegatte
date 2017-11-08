@@ -5,7 +5,9 @@
  */
 package com.kdg3.regatte;
 
+import com.kdg3.DAO.SerieDAO;
 import com.kdg3.vue.CreationVoilier;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 
 /**
@@ -17,7 +19,7 @@ public class LauncherCreationVoilier {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JFrame frame = new CreationVoilier();
         frame.pack();
         frame.setVisible(true);

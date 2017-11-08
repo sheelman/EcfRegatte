@@ -31,7 +31,7 @@ public class ClasseDAO {
      * @throws java.sql.SQLException
      */
     
-    public static List<ClasseModele> findAll() throws SQLException {
+    public static List<ClasseModele> findAll() {
 
         Connection c = JDBConnect.getConnection();
 

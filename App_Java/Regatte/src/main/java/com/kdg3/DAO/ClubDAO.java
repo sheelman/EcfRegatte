@@ -30,7 +30,7 @@ public class ClubDAO {
       * @throws SQLException 
       */
     
-    public static List<ClubModele> findAll() throws SQLException {
+    public static List<ClubModele> findAll() {
 
         Connection c = JDBConnect.getConnection();
 

@@ -33,36 +33,36 @@ public class TestDAO {
      */
     public static void main(String[] args) throws Exception {
         
-                List<ClasseModele> classes = ClasseDAO.findAll();
-                List<ClubModele> clubs = ClubDAO.findAll();
-                List<PersonneModele> personnes = PersonneDAO.findAll();
+//                List<ClasseModele> classes = ClasseDAO.findAll();
+//                List<ClubModele> clubs = ClubDAO.findAll();
+//                List<PersonneModele> personnes = PersonneDAO.findAll();
                 List<ProprietaireModele> proprietaires = ProprietaireDAO.findAll();
-                List<SerieModele> series = SerieDAO.findAll();
-                List<VoilierModele> voiliers = VoilierDAO.findAll();
+//                List<SerieModele> series = SerieDAO.findAll();
+//                List<VoilierModele> voiliers = VoilierDAO.findAll();
                 
-                for (ClasseModele classe : classes) {
-			System.out.println(classe);
-		}
-                
-                for (ClubModele club : clubs) {
-			System.out.println(club);
-		}
-                
-                for (PersonneModele personne : personnes) {
-			System.out.println(personne);
-		}
+//                for (ClasseModele classe : classes) {
+//			System.out.println(classe);
+//		}
+//                
+//                for (ClubModele club : clubs) {
+//			System.out.println(club);
+//		}
+//                
+//                for (PersonneModele personne : personnes) {
+//			System.out.println(personne);
+//		}
                 
                 for (ProprietaireModele proprietaire : proprietaires) {
 			System.out.println(proprietaire);
 		}
-                
-                for (SerieModele serie : series) {
-			System.out.println(serie);
-		}
-                
-                for (VoilierModele voilier : voiliers) {
-			System.out.println(voilier);
-		}
+//                
+//                for (SerieModele serie : series) {
+//			System.out.println(serie);
+//		}
+//                
+//                for (VoilierModele voilier : voiliers) {
+//			System.out.println(voilier);
+//		}
     }
     
 }

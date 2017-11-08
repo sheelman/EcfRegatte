@@ -5,7 +5,19 @@
  */
 package com.kdg3.vue;
 
+import com.kdg3.DAO.ClasseDAO;
+import com.kdg3.DAO.ProprietaireDAO;
+import com.kdg3.DAO.SerieDAO;
+import com.kdg3.DAO.VoilierDAO;
+import com.kdg3.modele.ClasseModele;
+import com.kdg3.modele.ProprietaireModele;
+import com.kdg3.modele.SerieModele;
+import com.kdg3.modele.VoilierModele;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -60,6 +72,11 @@ public class CreationVoilier extends javax.swing.JFrame {
         });
 
         jBtnAjouter_voilier.setText("AJOUTER VOILIER");
+        jBtnAjouter_voilier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAjouter_voilierActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Numéro de voile");
 
@@ -69,11 +86,16 @@ public class CreationVoilier extends javax.swing.JFrame {
 
         jLabel4.setText("Propriétaire");
 
-        jComboBoxSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSerie.setModel(new javax.swing.DefaultComboBoxModel(SerieDAO.findAll().toArray()));
+        jComboBoxSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSerieActionPerformed(evt);
+            }
+        });
 
-        jComboBoxClasse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxClasse.setModel(new javax.swing.DefaultComboBoxModel(ClasseDAO.findAll().toArray()));
 
-        jComboBoxProprietaire.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProprietaire.setModel(new javax.swing.DefaultComboBoxModel(ProprietaireDAO.findAll().toArray()));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,6 +184,43 @@ public class CreationVoilier extends javax.swing.JFrame {
         dialog.pack();
         dialog.setVisible(true);
     }//GEN-LAST:event_jBtnCreation_proprietaireActionPerformed
+
+    private void jComboBoxSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSerieActionPerformed
+
+    private void jBtnAjouter_voilierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAjouter_voilierActionPerformed
+            
+            String numero_voile = jTextFieldNumero_voile.getText();
+            ClasseModele classe = (ClasseModele) jComboBoxClasse.getSelectedItem();
+            ProprietaireModele proprietaire = (ProprietaireModele) jComboBoxProprietaire.getSelectedItem();
+            if(numero_voile.isEmpty()){
+                JOptionPane jop;
+                jop=new JOptionPane();
+                jop.showMessageDialog(null,
+                        "INFORMATION MANQUANTE!!!!!",
+                        " warning",JOptionPane.WARNING_MESSAGE);
+            }else{
+                try {                 
+                    int numeroVoile = Integer.parseInt(numero_voile);
+                    
+                    VoilierModele voilier = new VoilierModele(0, numeroVoile, proprietaire, classe);                   
+                    VoilierDAO.create(voilier);
+                    
+                    JOptionPane jop1;
+                    jop1=new JOptionPane();
+                    jop1.showMessageDialog(null,
+                            "le voilier a été créé",
+                            " Success",JOptionPane.INFORMATION_MESSAGE);
+                    
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreationProprietaire.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(CreationProprietaire.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+    }//GEN-LAST:event_jBtnAjouter_voilierActionPerformed
 
     /**
      * @param args the command line arguments
