@@ -26,7 +26,18 @@ public class ProprietaireModele extends PersonneModele{
         super(nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie_FFV, numero_licence, date_licence);
         this.club = club;
     }
-    
+
+    public ProprietaireModele(int id, ClubModele club, int id_personne, String nom, String prenom) {
+        super(id_personne, nom, prenom);
+        this.id = id;
+        this.club = club;
+    }
+
+    public ProprietaireModele(ClubModele club, String nom, String prenom) {
+        super(nom, prenom);
+        this.club = club;
+    }
+        
     public int getId() {
         return id;
     }

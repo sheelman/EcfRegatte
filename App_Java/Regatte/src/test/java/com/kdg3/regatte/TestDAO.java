@@ -35,7 +35,7 @@ public class TestDAO {
         
 //                List<ClasseModele> classes = ClasseDAO.findAll();
 //                List<ClubModele> clubs = ClubDAO.findAll();
-//                List<PersonneModele> personnes = PersonneDAO.findAll();
+                List<PersonneModele> personnes = PersonneDAO.findAll();
                 List<ProprietaireModele> proprietaires = ProprietaireDAO.findAll();
 //                List<SerieModele> series = SerieDAO.findAll();
 //                List<VoilierModele> voiliers = VoilierDAO.findAll();
@@ -47,15 +47,15 @@ public class TestDAO {
 //                for (ClubModele club : clubs) {
 //			System.out.println(club);
 //		}
-//                
-//                for (PersonneModele personne : personnes) {
-//			System.out.println(personne);
-//		}
+                
+                for (PersonneModele personne : personnes) {
+			System.out.println(personne);
+		}
                 
                 for (ProprietaireModele proprietaire : proprietaires) {
 			System.out.println(proprietaire);
 		}
-//                
+                
 //                for (SerieModele serie : series) {
 //			System.out.println(serie);
 //		}

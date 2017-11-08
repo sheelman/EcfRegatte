@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class CreationProprietaire extends javax.swing.JPanel {
 
-    DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
     /**
      * Creates new form CreationProprietaire
      */
@@ -114,7 +114,7 @@ public class CreationProprietaire extends javax.swing.JPanel {
         });
 
         try {
-            jFormattedTextFieldDate_naissance.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+            jFormattedTextFieldDate_naissance.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -122,7 +122,7 @@ public class CreationProprietaire extends javax.swing.JPanel {
         jFormattedTextFieldDate_naissance.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
 
         try {
-            jFormattedTextFieldDate_licence.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+            jFormattedTextFieldDate_licence.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -254,20 +254,20 @@ public class CreationProprietaire extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
     private void jBtnAjouter_proprietaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAjouter_proprietaireActionPerformed
-            
+            //pour simplifier l'essai je n'utilise pas tous les champs
             String nom = jTextFieldNom.getText();
             String prenom = jTextFieldPrenom.getText();
-            String adresse = jTextFieldAdresse.getText();
-            String code_postal = jTextFieldCode_postal.getText();
-            String ville = jTextFieldVille.getText();
-            String telephone = jTextFieldTelephone.getText();
-            String email = jTextFieldEmail.getText();
-            String sdate_naissance = jFormattedTextFieldDate_naissance.getText();
-            String affilie_FFV = jCheckBoxAffilie_FFV.getText();
-            String numero_licence = jTextFieldNumero_licence.getText();
-            String sdate_licence = jFormattedTextFieldDate_licence.getText();
+//            String adresse = jTextFieldAdresse.getText();
+//            String code_postal = jTextFieldCode_postal.getText();
+//            String ville = jTextFieldVille.getText();
+//            String telephone = jTextFieldTelephone.getText();
+//            String email = jTextFieldEmail.getText();
+//            String sdate_naissance = jFormattedTextFieldDate_naissance.getText();
+//            String affilie_FFV = jCheckBoxAffilie_FFV.getText();
+//            String numero_licence = jTextFieldNumero_licence.getText();
+//            String sdate_licence = jFormattedTextFieldDate_licence.getText();
             ClubModele club = (ClubModele) jComboBoxClub.getSelectedItem();
-            if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || code_postal.isEmpty()|| ville.isEmpty()/*|| telephone.isEmpty()||email.isEmpty()|| sdate_naissance.isEmpty()|| numero_licence.isEmpty()|| sdate_licence.isEmpty()*/ ){
+            if(nom.isEmpty() || prenom.isEmpty()/* || adresse.isEmpty() || code_postal.isEmpty()|| ville.isEmpty()|| telephone.isEmpty()||email.isEmpty()|| sdate_naissance.isEmpty()|| numero_licence.isEmpty()|| sdate_licence.isEmpty()*/ ){
                 JOptionPane jop;
                 jop=new JOptionPane();
                 jop.showMessageDialog(null,
@@ -275,16 +275,16 @@ public class CreationProprietaire extends javax.swing.JPanel {
                         " warning",JOptionPane.WARNING_MESSAGE);
             }else{
                 try {
-                    Date date_naissance = df.parse(sdate_naissance);
-                    Date date_licence = df.parse(sdate_licence);
-                    boolean affilie = Boolean.parseBoolean(affilie_FFV);
+//                    Date date_naissance = df.parse(sdate_naissance);
+//                    Date date_licence = df.parse(sdate_licence);
+//                    boolean affilie = Boolean.parseBoolean(affilie_FFV);
                     
                     
-                    PersonneModele personne = new PersonneModele(0, nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie, numero_licence, date_licence);
+                    PersonneModele personne = new PersonneModele(0, nom, prenom/*, adresse, code_postal, ville, telephone, email, date_naissance, affilie, numero_licence, date_licence*/);
                     PersonneDAO.create(personne);
                     
               
-                    ProprietaireModele proprietaire = new ProprietaireModele(0, club, personne.getId(), personne.getNom(), personne.getPrenom(), personne.getAdresse(), personne.getCode_postal(), personne.getVille(), personne.getTelephone(), personne.getEmail(), personne.getDate_naissance(), personne.isAffilie_FFV(), personne.getNumero_licence(), personne.getDate_licence());
+                    ProprietaireModele proprietaire = new ProprietaireModele(0, club, personne.getId(), personne.getNom(), personne.getPrenom()/*, personne.getAdresse(), personne.getCode_postal(), personne.getVille(), personne.getTelephone(), personne.getEmail(), personne.getDate_naissance(), personne.isAffilie_FFV(), personne.getNumero_licence(), personne.getDate_licence()*/);
                     ProprietaireDAO.create(proprietaire);
                     
                     JOptionPane jop1;

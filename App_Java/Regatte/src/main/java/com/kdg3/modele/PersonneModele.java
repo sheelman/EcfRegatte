@@ -55,6 +55,19 @@ public class PersonneModele {
         this.date_licence = date_licence;
     }
 
+    public PersonneModele(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    public PersonneModele(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
