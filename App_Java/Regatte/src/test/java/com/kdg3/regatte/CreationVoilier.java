@@ -5,7 +5,7 @@
  */
 package com.kdg3.regatte;
 
-import com.kdg3.vue.CreationVoilierGui;
+import com.kdg3.vue2.CreationVoilierGui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

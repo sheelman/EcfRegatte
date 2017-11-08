@@ -5,27 +5,22 @@
  */
 package com.kdg3.regatte;
 
-import com.kdg3.vue.CreationVoilierGui;
+import com.kdg3.vue.CreationVoilier;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
  * @author sheelman
  */
-public class CreationVoilier {
+public class LauncherCreationVoilier {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-            JFrame frame = new JFrame("Création de voilier");
-            JPanel panel = new CreationVoilierGui();
-            frame.add(panel);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
+        JFrame frame = new CreationVoilier();
+        frame.pack();
+        frame.setVisible(true);
     }
     
 }

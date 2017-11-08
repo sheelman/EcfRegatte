@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kdg3.vue;
+package com.kdg3.vue2;
 
+import com.kdg3.vue.CreationProprietaire;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
@@ -165,9 +166,13 @@ public class CreationVoilierGui extends javax.swing.JPanel {
         dialog.setVisible(true);
     }//GEN-LAST:event_jBtnCreation_proprietaireActionPerformed
 
+    private void jTextNumero_voileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNumero_voileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNumero_voileActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.util.List<com.kdg3.vue.Classe> classeList;
+    private java.util.List<com.kdg3.vue2.Classe> classeList;
     private javax.persistence.Query classeQuery;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jBtnAjout_voilier;
@@ -183,9 +188,9 @@ public class CreationVoilierGui extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextNumero_voile;
-    private java.util.List<com.kdg3.vue.Proprietaire> proprietaireList;
+    private java.util.List<com.kdg3.vue2.Proprietaire> proprietaireList;
     private javax.persistence.Query proprietaireQuery;
-    private java.util.List<com.kdg3.vue.Serie> serieList;
+    private java.util.List<com.kdg3.vue2.Serie> serieList;
     private javax.persistence.Query serieQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables

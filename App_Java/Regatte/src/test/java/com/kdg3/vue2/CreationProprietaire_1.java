@@ -3,7 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kdg3.vue;
+package com.kdg3.vue2;
+
+import com.kdg3.DAO.PersonneDAO;
+import com.kdg3.DAO.ProprietaireDAO;
+import com.kdg3.modele.PersonneModele;
+import com.kdg3.modele.ProprietaireModele;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,11 +31,9 @@ public class CreationProprietaire extends javax.swing.JDialog {
         initComponents();
     }
 
-    CreationProprietaire() {
-        
+    CreationProprietaire(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +43,11 @@ public class CreationProprietaire extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("regatteTest?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        clubQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Club c");
+        clubList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : clubQuery.getResultList();
         jBtnFermer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextNom = new javax.swing.JTextField();
@@ -51,18 +63,18 @@ public class CreationProprietaire extends javax.swing.JDialog {
         jLabel11 = new javax.swing.JLabel();
         jCheckAffilie_FFV = new javax.swing.JCheckBox();
         jTextCode_postal = new javax.swing.JTextField();
-        jTexAdresse = new javax.swing.JTextField();
+        jTextAdresse = new javax.swing.JTextField();
         jTextVille = new javax.swing.JTextField();
         jTextTelephone = new javax.swing.JTextField();
-        jTextDate_naissance = new javax.swing.JTextField();
         jTextEmail = new javax.swing.JTextField();
-        jTextDate_licence = new javax.swing.JTextField();
         jTextNumero_licence = new javax.swing.JTextField();
         jTextPrenom = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jComboClub = new javax.swing.JComboBox<>();
         jBtnAnnuler = new javax.swing.JButton();
         jBtnAjouterProprietaire = new javax.swing.JButton();
+        jFormattedTextDate_naissance = new javax.swing.JFormattedTextField();
+        jFormattedTextDate_licence = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,10 +108,16 @@ public class CreationProprietaire extends javax.swing.JDialog {
         jLabel11.setText("Date de licence");
 
         jCheckAffilie_FFV.setText("Licencié");
+        jCheckAffilie_FFV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckAffilie_FFVActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Club");
 
-        jComboClub.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, clubList, jComboClub);
+        bindingGroup.addBinding(jComboBoxBinding);
 
         jBtnAnnuler.setText("Annuler");
 
@@ -109,6 +127,24 @@ public class CreationProprietaire extends javax.swing.JDialog {
                 jBtnAjouterProprietaireActionPerformed(evt);
             }
         });
+
+        try {
+            jFormattedTextDate_naissance.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextDate_naissance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextDate_naissance.setText("  /     /  ");
+        jFormattedTextDate_naissance.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+
+        try {
+            jFormattedTextDate_licence.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextDate_licence.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextDate_licence.setText("  /       /  ");
+        jFormattedTextDate_licence.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,7 +156,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextDate_licence))
+                        .addComponent(jFormattedTextDate_licence))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -128,7 +164,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextDate_naissance))
+                        .addComponent(jFormattedTextDate_naissance))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -148,7 +184,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTexAdresse))
+                        .addComponent(jTextAdresse))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -188,7 +224,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTexAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -208,7 +244,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextDate_naissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextDate_naissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -220,17 +256,19 @@ public class CreationProprietaire extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextDate_licence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextDate_licence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jComboClub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnAnnuler)
                     .addComponent(jBtnAjouterProprietaire))
                 .addGap(24, 24, 24))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -239,8 +277,54 @@ public class CreationProprietaire extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_jBtnFermerActionPerformed
 
-    private void jBtnAjouterProprietaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAjouterProprietaireActionPerformed
+    private void jCheckAffilie_FFVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckAffilie_FFVActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckAffilie_FFVActionPerformed
+
+    private void jBtnAjouterProprietaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAjouterProprietaireActionPerformed
+        
+            String nom = jTextNom.getText();
+            String prenom = jTextPrenom.getText();
+            String adresse = jTextAdresse.getText();
+            String code_postal = jTextCode_postal.getText();
+            String ville = jTextVille.getText();
+            String telephone = jTextTelephone.getText();
+            String email = jTextEmail.getText();
+            Date date_naissance = jFormattedTextDate_naissance.getText();
+            Boolean affilie_FFV = jCheckAffilie_FFV.getText();
+            String numero_licence = jTextNumero_licence.getText();
+            Date date_licence = jFormattedTextDate_licence.getText();
+            Club club = (Club) jComboClub.getSelectedItem();
+            if(nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() || code_postal.isEmpty()|| ville.isEmpty()||telephone.isEmpty()||email.isEmpty()|| date_naissance.isEmpty()|| numero_licence.isEmpty()|| date_licence.isEmpty() ){
+                JOptionPane jop;
+                jop=new JOptionPane();
+                jop.showMessageDialog(null,
+                        "INFORMATION MANQUANTE!!!!!",
+                        " warning",JOptionPane.WARNING_MESSAGE);
+            }else{
+                try {
+                    PersonneModele personne = new PersonneModele(0, nom, prenom, adresse, code_postal, ville, telephone, email, date_naissance, affilie_FFV, numero_licence, date_licence);
+                    
+                    int personneId = PersonneDAO.create(personne);
+                    
+                    personne.setId(personneId);
+                    ProprietaireModele proprietaire = new ProprietaireModele(0, club, personne.getId(), personne.getNom(), personne.getPrenom(), personne.getAdresse(), personne.getCode_postal(), personne.getVille(), personne.getTelephone(), personne.getEmail(), personne.getDate_naissance(), personne.isAffilie_FFV(), personne.getNumero_licence(), personne.getDate_licence());
+                    ProprietaireDAO.create(proprietaire);
+                    
+                    JOptionPane jop1;
+                    jop1=new JOptionPane();
+                    jop1.showMessageDialog(null,
+                            "le proprietaire a été créé",
+                            " Success",JOptionPane.INFORMATION_MESSAGE);
+                    
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(CreationProprietaire.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(CreationProprietaire.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+
     }//GEN-LAST:event_jBtnAjouterProprietaireActionPerformed
 
     /**
@@ -269,6 +353,7 @@ public class CreationProprietaire extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(CreationProprietaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -286,11 +371,16 @@ public class CreationProprietaire extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.util.List<com.kdg3.vue2.Club> clubList;
+    private javax.persistence.Query clubQuery;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jBtnAjouterProprietaire;
     private javax.swing.JButton jBtnAnnuler;
     private javax.swing.JButton jBtnFermer;
     private javax.swing.JCheckBox jCheckAffilie_FFV;
     private javax.swing.JComboBox<String> jComboClub;
+    private javax.swing.JFormattedTextField jFormattedTextDate_licence;
+    private javax.swing.JFormattedTextField jFormattedTextDate_naissance;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -303,15 +393,14 @@ public class CreationProprietaire extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTexAdresse;
+    private javax.swing.JTextField jTextAdresse;
     private javax.swing.JTextField jTextCode_postal;
-    private javax.swing.JTextField jTextDate_licence;
-    private javax.swing.JTextField jTextDate_naissance;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNom;
     private javax.swing.JTextField jTextNumero_licence;
     private javax.swing.JTextField jTextPrenom;
     private javax.swing.JTextField jTextTelephone;
     private javax.swing.JTextField jTextVille;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

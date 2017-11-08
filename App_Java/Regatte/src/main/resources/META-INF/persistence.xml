@@ -2,10 +2,30 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="regatteTest?zeroDateTimeBehavior=convertToNullPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.kdg3.vue.Club</class>
-    <class>com.kdg3.vue.Serie</class>
-    <class>com.kdg3.vue.Classe</class>
-    <class>com.kdg3.vue.Proprietaire</class>
+    <class>com.kdg3.vue2.Proprietaire</class>
+    <class>com.kdg3.vue2.Club</class>
+    <class>com.kdg3.vue2.Serie</class>
+    <class>com.kdg3.vue2.Classe</class>
+    <class>com.kdg3.modele.Equipage</class>
+    <class>com.kdg3.modele.Proprietaire</class>
+    <class>com.kdg3.modele.Regatte</class>
+    <class>com.kdg3.modele.Pointe</class>
+    <class>com.kdg3.modele.Enregistrer</class>
+    <class>com.kdg3.modele.Code</class>
+    <class>com.kdg3.modele.Membres</class>
+    <class>com.kdg3.modele.Personne</class>
+    <class>com.kdg3.modele.Commissaire</class>
+    <class>com.kdg3.modele.Voilier</class>
+    <class>com.kdg3.modele.Jury</class>
+    <class>com.kdg3.modele.Serie</class>
+    <class>com.kdg3.modele.Concurent</class>
+    <class>com.kdg3.modele.Personnel</class>
+    <class>com.kdg3.modele.Challenge</class>
+    <class>com.kdg3.modele.Course</class>
+    <class>com.kdg3.modele.Comite</class>
+    <class>com.kdg3.modele.Classe</class>
+    <class>com.kdg3.modele.Skypper</class>
+    <class>com.kdg3.modele.Club</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/regatteTest?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="admin"/>

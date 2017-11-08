@@ -42,7 +42,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.kdg3.vue.Serie&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.kdg3.vue2.Serie&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="classeQuery">
@@ -78,7 +78,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.kdg3.vue.Proprietaire&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.kdg3.vue2.Proprietaire&gt;"/>
       </AuxValues>
     </Component>
   </NonVisualComponents>

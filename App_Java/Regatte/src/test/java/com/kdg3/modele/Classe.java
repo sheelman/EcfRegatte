@@ -3,38 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kdg3.vue;
+package com.kdg3.modele;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author sheelman
  */
-@Entity
-@Table(name = "classe", catalog = "regatteTest", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "Classe.findAll", query = "SELECT c FROM Classe c")
-    , @NamedQuery(name = "Classe.findById", query = "SELECT c FROM Classe c WHERE c.id = :id")
-    , @NamedQuery(name = "Classe.findByNom", query = "SELECT c FROM Classe c WHERE c.nom = :nom")
-    , @NamedQuery(name = "Classe.findByCoefficient", query = "SELECT c FROM Classe c WHERE c.coefficient = :coefficient")
-    , @NamedQuery(name = "Classe.findByIdSerie", query = "SELECT c FROM Classe c WHERE c.idSerie = :idSerie")})
+@MappedSuperclass
+@Table(name = "classe")
+@XmlRootElement
 public class Classe implements Serializable {
-
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,9 +42,11 @@ public class Classe implements Serializable {
     @Basic(optional = false)
     @Column(name = "coefficient")
     private float coefficient;
-    @Basic(optional = false)
-    @Column(name = "id_serie")
-    private int idSerie;
+    @JoinColumn(name = "id_serie", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Serie idSerie;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idClasse")
+    private Collection<Voilier> voilierCollection;
 
     public Classe() {
     }
@@ -59,11 +55,10 @@ public class Classe implements Serializable {
         this.id = id;
     }
 
-    public Classe(Integer id, String nom, float coefficient, int idSerie) {
+    public Classe(Integer id, String nom, float coefficient) {
         this.id = id;
         this.nom = nom;
         this.coefficient = coefficient;
-        this.idSerie = idSerie;
     }
 
     public Integer getId() {
@@ -71,9 +66,7 @@ public class Classe implements Serializable {
     }
 
     public void setId(Integer id) {
-        Integer oldId = this.id;
         this.id = id;
-        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getNom() {
@@ -81,9 +74,7 @@ public class Classe implements Serializable {
     }
 
     public void setNom(String nom) {
-        String oldNom = this.nom;
         this.nom = nom;
-        changeSupport.firePropertyChange("nom", oldNom, nom);
     }
 
     public float getCoefficient() {
@@ -91,19 +82,24 @@ public class Classe implements Serializable {
     }
 
     public void setCoefficient(float coefficient) {
-        float oldCoefficient = this.coefficient;
         this.coefficient = coefficient;
-        changeSupport.firePropertyChange("coefficient", oldCoefficient, coefficient);
     }
 
-    public int getIdSerie() {
+    public Serie getIdSerie() {
         return idSerie;
     }
 
-    public void setIdSerie(int idSerie) {
-        int oldIdSerie = this.idSerie;
+    public void setIdSerie(Serie idSerie) {
         this.idSerie = idSerie;
-        changeSupport.firePropertyChange("idSerie", oldIdSerie, idSerie);
+    }
+
+    @XmlTransient
+    public Collection<Voilier> getVoilierCollection() {
+        return voilierCollection;
+    }
+
+    public void setVoilierCollection(Collection<Voilier> voilierCollection) {
+        this.voilierCollection = voilierCollection;
     }
 
     @Override
@@ -128,15 +124,7 @@ public class Classe implements Serializable {
 
     @Override
     public String toString() {
-        return nom;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "com.kdg3.DAO.Classe[ id=" + id + " ]";
     }
     
 }
