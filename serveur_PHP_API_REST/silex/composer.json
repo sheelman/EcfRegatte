@@ -1,0 +1,15 @@
+{
+    "name": "root/silex",
+    "authors": [
+        {
+            "name": "sheelman",
+            "email": "sheeliah@hotmail.fr"
+        }
+    ],
+    "require": {
+        "silex/silex": "2.0"
+    },
+    "scripts": {
+        "start": "php -S 127.0.0.1:8080 index.php",
+"test": "phpunit"}
+}

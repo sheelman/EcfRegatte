@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Résultats</string>
+    <string name="action_settings">Settings</string>
+    <string name="Hello_World">Bonjour et bienvenu !</string>
+    <string name="title_activity_group_list">GroupListActivity</string>
+    <string name="title_activity_challenges">Challenges</string>
+    <string name="title_activity_regattes_main">RegattesMain</string>
+    <string name="title_activity_challenges_main">ChallengesMain</string>
+</resources>
